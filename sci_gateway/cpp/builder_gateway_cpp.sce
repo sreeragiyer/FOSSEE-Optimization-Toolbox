@@ -18,6 +18,7 @@ Build_64Bits = %t;
 
 path_builder = get_absolute_file_path('builder_gateway_cpp.sce');
 
+
 if getos()=="Windows" then
 //Name of All the Functions
 Function_Names = [
@@ -158,11 +159,38 @@ Files = [
 else
 //Name of All the Functions
 Function_Names = [
+	
+
+		//QP(IPOPT)
+		"solveqp","sci_solveqp";
+
+		//fmincon,fminunc, fminbnd function(IPOPT)
+		"solveminuncp","sci_solveminuncp";
+		"solveminbndp","sci_solveminbndp";
+		"solveminconp","sci_solveminconp";
+		
+		//Linprog function (CLP)
+		"linearprog","sci_linearprog";
+		"rmps", "sci_rmps";
+
+		//MILP (CBC)
+		'sci_matrix_intlinprog', 'matrix_cppintlinprog';
+		'sci_mps_intlinprog','mps_cppintlinprog';
+
+				
+		//Integer NLP (Bonmin)
+		'inter_fminunc', 'cpp_intfminunc';
+		'inter_fminbnd', 'cpp_intfminbnd';
+		'inter_fmincon', 'cpp_intfmincon';
+		'sci_intqpipopt', 'cpp_intqpipopt';
+
+		//Symphony
+
 		//for opening/closing environment and checking if it is open/close
 		"sym_open","sci_sym_open";
 		"sym_close","sci_sym_close";
 		"sym_isEnvActive","sci_sym_isEnvActive";
-		
+
 		//run time parameters
 		"sym_resetParams","sci_sym_set_defaults";
 		"sym_setIntParam","sci_sym_set_int_param";
@@ -172,17 +200,17 @@ Function_Names = [
 		"sym_setStrParam","sci_sym_set_str_param";
 		"sym_getStrParam","sci_sym_get_str_param";
 		"sym_getInfinity","sci_sym_getInfinity";
-		
+
 		//problem loaders
 		"sym_loadProblemBasic","sci_sym_loadProblemBasic";
 		"sym_loadProblem","sci_sym_loadProblem";
 		"sym_loadMPS","sci_sym_load_mps";
-		
+
 		//basic data
 		"sym_getNumConstr","sci_sym_get_num_int";
 		"sym_getNumVar","sci_sym_get_num_int";
 		"sym_getNumElements","sci_sym_get_num_int";
-		
+
 		//variable and objective data
 		"sym_isContinuous","sci_sym_isContinuous";
 		"sym_isBinary","sci_sym_isBinary";
@@ -197,7 +225,7 @@ Function_Names = [
 		"sym_setObjCoeff","sci_sym_setObjCoeff";
 		"sym_getObjSense","sci_sym_getObjSense";
 		"sym_setObjSense","sci_sym_setObjSense";
-		
+
 		//constraint data
 		"sym_getRhs","sci_sym_get_dbl_arr";
 		"sym_getConstrRange","sci_sym_get_dbl_arr";
@@ -207,20 +235,20 @@ Function_Names = [
 		"sym_setConstrUpper","sci_sym_setConstrBound";
 		"sym_setConstrType","sci_sym_setConstrType";
 		"sym_getMatrix","sci_sym_get_matrix";
-		
+
 		//add/remove variables and constraints
 		"sym_addConstr","sci_sym_addConstr";
 		"sym_addVar","sci_sym_addVar";
 		"sym_deleteVars","sci_sym_delete_cols";
 		"sym_deleteConstrs","sci_sym_delete_rows";
-		
+
 		//primal bound
 		"sym_getPrimalBound","sci_sym_getPrimalBound";
 		"sym_setPrimalBound","sci_sym_setPrimalBound";
 		
 		//set preliminary solution
 		"sym_setVarSoln","sci_sym_setColSoln";
-		
+	
 		//solve
 		"sym_solve","sci_sym_solve";
 		
@@ -237,34 +265,54 @@ Function_Names = [
 		"sym_getIterCount","sci_sym_get_iteration_count";
 		"sym_getConstrActivity","sci_sym_getRowActivity";
 
-		//Linprog function
-		"linearprog","sci_linearprog"
-        "rmps","sci_rmps"
-
-		//QP function
-		"solveqp","sci_solveqp"
-
-		//fminunc function and fminbnd function
-		"solveminuncp","sci_solveminuncp"
-		"solveminbndp","sci_solveminbndp"
-		"solveminconp","sci_solveminconp"
 		
-		//Integer programming functions
-		'inter_fminunc', 'cpp_intfminunc';
-		'inter_fminbnd', 'cpp_intfminbnd';
-		'inter_fmincon', 'cpp_intfmincon';
-		'sci_intqpipopt', 'cpp_intqpipopt';
-		'sci_matrix_intlinprog', 'matrix_cppintlinprog';
-		'sci_mps_intlinprog','mps_cppintlinprog';
-
 		//ecos function
-		"solveecos","sci_ecos"
+		"solveecos","sci_ecos";
+   
+
+		"fotversion","sci_fotversion"
 	];
 
 //Name of all the files to be compiled
 Files = [
-		"globals.cpp",
+		
 		"sci_iofunc.cpp",
+
+
+		//QP (IPOPT)
+		"sci_ipopt.cpp",
+		"sci_QuadNLP.cpp",
+	
+		//fmincon,fminunc,fminbnd (IPOPT)
+		"sci_minuncNLP.cpp",
+		"sci_ipoptfminunc.cpp",
+		"sci_minbndNLP.cpp",
+		"sci_ipoptfminbnd.cpp",
+		"sci_minconNLP.cpp",
+		"sci_ipoptfmincon.cpp",
+
+
+		//Linprog (CLP)
+		"sci_LinProg.cpp",
+	     "read_mps.cpp",
+
+		//MILP (CBC)
+		'cbcintlinprog_mpscpp.cpp',
+		'cbcintlinprog_matrixcpp.cpp',
+		
+		//Integer NLP (Bonmin) 
+		'sci_QuadTMINLP.cpp',
+		'cpp_intqpipopt.cpp',
+		'sci_minuncTMINLP.cpp',
+		'cpp_intfminunc.cpp',
+		'sci_minbndTMINLP.cpp',
+		'cpp_intfminbnd.cpp',		
+		'sci_minconTMINLP.cpp',
+		'cpp_intfmincon.cpp',
+
+	
+		//Symphony
+		"globals.cpp",
 		"sci_sym_openclose.cpp",
 		"sci_solver_status_query_functions.cpp",
 		"sci_sym_solve.cpp",                    
@@ -288,32 +336,12 @@ Files = [
 		"sci_sym_setcolsoln.cpp",
 		"sci_sym_getrowact.cpp",
 		"sci_sym_getobjsense.cpp",
-		"sci_sym_remove.cpp",
-		"sci_QuadNLP.cpp",
-		"sci_ipopt.cpp",
-		"sci_QuadNLP.cpp",
-		"sci_ipopt.cpp",
-		"sci_minuncNLP.cpp",
-		"sci_ipoptfminunc.cpp",
-		"sci_minbndNLP.cpp",
-		"sci_ipoptfminbnd.cpp",
-		"sci_minconNLP.cpp",
-		"sci_ipoptfmincon.cpp",
-		"sci_LinProg.cpp",
-        "read_mps.cpp"
-		
-  		'sci_minuncTMINLP.cpp',
-		'cpp_intfminunc.cpp',
-		'sci_minbndTMINLP.cpp',
-		'cpp_intfminbnd.cpp',		
-		'sci_minconTMINLP.cpp',
-		'cpp_intfmincon.cpp',
-		'cbcintlinprog_matrixcpp.cpp',
-		'sci_QuadTMINLP.cpp',
-		'cpp_intqpipopt.cpp',
-		'cbcintlinprog_mpscpp.cpp'
+		"sci_sym_remove.cpp", 
 
-		'ecos.cpp'
+		//ecos
+ 		"ecos.cpp",
+
+		"sci_fotversion.c"
 	]
 
 end
@@ -334,14 +362,16 @@ if getos()=="Windows" then
 else
 	third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
 	lib_base_dir = third_dir + filesep() + 'linux' + filesep() + 'lib' + filesep() + Version + filesep();
-	inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin';
+	inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin'+ filesep();
     
     C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
     
     Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
+
     
 end
 
-tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags);
+tbx_build_gateway(toolbox_title,Function_Names,Files,path_builder, [], Linker_Flag, C_Flags);
+
 
 clear toolbox_title Function_Names Files Linker_Flag C_Flags;

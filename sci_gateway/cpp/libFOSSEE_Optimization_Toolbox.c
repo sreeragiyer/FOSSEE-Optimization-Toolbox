@@ -6,6 +6,18 @@ extern "C" {
 #include <api_scilab.h>
 #include <MALLOC.h>
 static int direct_gateway(char *fname,void F(void)) { F();return 0;};
+extern Gatefunc sci_solveqp;
+extern Gatefunc sci_solveminuncp;
+extern Gatefunc sci_solveminbndp;
+extern Gatefunc sci_solveminconp;
+extern Gatefunc sci_linearprog;
+extern Gatefunc sci_rmps;
+extern Gatefunc matrix_cppintlinprog;
+extern Gatefunc mps_cppintlinprog;
+extern Gatefunc cpp_intfminunc;
+extern Gatefunc cpp_intfminbnd;
+extern Gatefunc cpp_intfmincon;
+extern Gatefunc cpp_intqpipopt;
 extern Gatefunc sci_sym_open;
 extern Gatefunc sci_sym_close;
 extern Gatefunc sci_sym_isEnvActive;
@@ -63,20 +75,21 @@ extern Gatefunc sci_sym_getVarSoln;
 extern Gatefunc sci_sym_getObjVal;
 extern Gatefunc sci_sym_get_iteration_count;
 extern Gatefunc sci_sym_getRowActivity;
-extern Gatefunc sci_linearprog;
-extern Gatefunc sci_rmps;
-extern Gatefunc sci_solveqp;
-extern Gatefunc sci_solveminuncp;
-extern Gatefunc sci_solveminbndp;
-extern Gatefunc sci_solveminconp;
-extern Gatefunc cpp_intfminunc;
-extern Gatefunc cpp_intfminbnd;
-extern Gatefunc cpp_intfmincon;
-extern Gatefunc cpp_intqpipopt;
-extern Gatefunc matrix_cppintlinprog;
-extern Gatefunc mps_cppintlinprog;
 extern Gatefunc sci_ecos;
+extern Gatefunc sci_fotversion;
 static GenericTable Tab[]={
+  {(Myinterfun)sci_gateway,sci_solveqp,"solveqp"},
+  {(Myinterfun)sci_gateway,sci_solveminuncp,"solveminuncp"},
+  {(Myinterfun)sci_gateway,sci_solveminbndp,"solveminbndp"},
+  {(Myinterfun)sci_gateway,sci_solveminconp,"solveminconp"},
+  {(Myinterfun)sci_gateway,sci_linearprog,"linearprog"},
+  {(Myinterfun)sci_gateway,sci_rmps,"rmps"},
+  {(Myinterfun)sci_gateway,matrix_cppintlinprog,"sci_matrix_intlinprog"},
+  {(Myinterfun)sci_gateway,mps_cppintlinprog,"sci_mps_intlinprog"},
+  {(Myinterfun)sci_gateway,cpp_intfminunc,"inter_fminunc"},
+  {(Myinterfun)sci_gateway,cpp_intfminbnd,"inter_fminbnd"},
+  {(Myinterfun)sci_gateway,cpp_intfmincon,"inter_fmincon"},
+  {(Myinterfun)sci_gateway,cpp_intqpipopt,"sci_intqpipopt"},
   {(Myinterfun)sci_gateway,sci_sym_open,"sym_open"},
   {(Myinterfun)sci_gateway,sci_sym_close,"sym_close"},
   {(Myinterfun)sci_gateway,sci_sym_isEnvActive,"sym_isEnvActive"},
@@ -134,19 +147,8 @@ static GenericTable Tab[]={
   {(Myinterfun)sci_gateway,sci_sym_getObjVal,"sym_getObjVal"},
   {(Myinterfun)sci_gateway,sci_sym_get_iteration_count,"sym_getIterCount"},
   {(Myinterfun)sci_gateway,sci_sym_getRowActivity,"sym_getConstrActivity"},
-  {(Myinterfun)sci_gateway,sci_linearprog,"linearprog"},
-  {(Myinterfun)sci_gateway,sci_rmps,"rmps"},
-  {(Myinterfun)sci_gateway,sci_solveqp,"solveqp"},
-  {(Myinterfun)sci_gateway,sci_solveminuncp,"solveminuncp"},
-  {(Myinterfun)sci_gateway,sci_solveminbndp,"solveminbndp"},
-  {(Myinterfun)sci_gateway,sci_solveminconp,"solveminconp"},
-  {(Myinterfun)sci_gateway,cpp_intfminunc,"inter_fminunc"},
-  {(Myinterfun)sci_gateway,cpp_intfminbnd,"inter_fminbnd"},
-  {(Myinterfun)sci_gateway,cpp_intfmincon,"inter_fmincon"},
-  {(Myinterfun)sci_gateway,cpp_intqpipopt,"sci_intqpipopt"},
-  {(Myinterfun)sci_gateway,matrix_cppintlinprog,"sci_matrix_intlinprog"},
-  {(Myinterfun)sci_gateway,mps_cppintlinprog,"sci_mps_intlinprog"},
   {(Myinterfun)sci_gateway,sci_ecos,"solveecos"},
+  {(Myinterfun)sci_gateway,sci_fotversion,"fotversion"},
 };
  
 int C2F(libFOSSEE_Optimization_Toolbox)()

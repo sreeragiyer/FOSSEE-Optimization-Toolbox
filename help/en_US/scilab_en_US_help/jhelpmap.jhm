@@ -2,7 +2,7 @@
 <!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
 <map version="1.0">
 <mapID target="index" url="index.html"/>
-<mapID target="section_44e1f57c5225357b5fe53cb5fad967e9" url="section_44e1f57c5225357b5fe53cb5fad967e9.html"/>
+<mapID target="section_22083c6251e6ca8895f0f94c8bff60a9" url="section_22083c6251e6ca8895f0f94c8bff60a9.html"/>
 <mapID target="cbcintlinprog" url="cbcintlinprog.html"/>
 <mapID target="fgoalattain" url="fgoalattain.html"/>
 <mapID target="fminbnd" url="fminbnd.html"/>
@@ -22,7 +22,7 @@
 <mapID target="qpipoptmat" url="qpipoptmat.html"/>
 <mapID target="symphony" url="symphony.html"/>
 <mapID target="symphonymat" url="symphonymat.html"/>
-<mapID target="section_5fc7ef02a133896efbd190355314d3fc" url="section_5fc7ef02a133896efbd190355314d3fc.html"/>
+<mapID target="section_86065feb8e417aa0bbda1a5a099a0391" url="section_86065feb8e417aa0bbda1a5a099a0391.html"/>
 <mapID target="sym_addConstr" url="sym_addConstr.html"/>
 <mapID target="sym_addVar" url="sym_addVar.html"/>
 <mapID target="sym_close" url="sym_close.html"/>

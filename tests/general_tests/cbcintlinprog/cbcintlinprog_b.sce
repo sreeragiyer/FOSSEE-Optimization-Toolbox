@@ -3,6 +3,7 @@
 // Reference : Example 1-3, Integer Linear Programming, Hamdy A. Taha. "Operations Research-An Introduction", 9E(2014))
 
 // Objective function
+mode(1)
 c = [0.25,0.21,0.22,16,25,18]';
 
 // Lower Bound of variable

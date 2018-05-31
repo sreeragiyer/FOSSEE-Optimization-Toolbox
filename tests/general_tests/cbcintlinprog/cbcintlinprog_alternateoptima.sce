@@ -3,6 +3,7 @@
 // Reference : Example 5-2, The Simplex method and Sensitivity Analysis, Hamdy A. Taha. "Operations Research-An Introduction", 9E(2014))
 
 // Objective function
+mode(1)
 c = [-2,-4]';
 
 // Lower Bound of variable

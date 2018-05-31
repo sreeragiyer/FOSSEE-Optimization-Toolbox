@@ -100,5 +100,5 @@ xopt = [0 1 1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 1 1 0 1 ..
 // Optimal value
 fopt = [ 24381 ]
 // Calling cbc
-[x,f,status,output] = cbcintlinprog(c,intcon,A,b,[],[],lb,ub,options);
+[x,f,status,output] = cbcintlinprog(c,intcon,A,b,[],[],lb,ub,options)
 //========= E N D === O F === D E M O =========//

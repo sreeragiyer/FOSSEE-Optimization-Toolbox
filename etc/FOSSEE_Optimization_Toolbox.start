@@ -45,14 +45,14 @@ else
     link(lib_path + "/libOsiCommonTests.so");
     link(lib_path + "/libOsiClp.so");
     link(lib_path + "/libCgl.so");
-    link(lib_path + "/libSym.so");
-    link(lib_path + "/libOsiSym.so");
     link(lib_path + "/libcoinblas.so");
     link(lib_path + "/libcoinlapack.so");
     link(lib_path + "/libcoinmumps.so");
     link(lib_path + "/libipopt.so");
-	link(lib_path + "/libCbc.so");
+    link(lib_path + "/libCbc.so");
     link(lib_path + '/libbonmin.so');
+    link(lib_path + "/libSym.so");
+    link(lib_path + "/libOsiSym.so");
     link(lib_path + "/libecos.so");
 
 end

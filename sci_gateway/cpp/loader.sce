@@ -10,7 +10,19 @@ if bOK then
   ulink(ilib);
 end
 //
-list_functions = [ 'sym_open';
+list_functions = [ 'solveqp';
+                   'solveminuncp';
+                   'solveminbndp';
+                   'solveminconp';
+                   'linearprog';
+                   'rmps';
+                   'sci_matrix_intlinprog';
+                   'sci_mps_intlinprog';
+                   'inter_fminunc';
+                   'inter_fminbnd';
+                   'inter_fmincon';
+                   'sci_intqpipopt';
+                   'sym_open';
                    'sym_close';
                    'sym_isEnvActive';
                    'sym_resetParams';
@@ -67,19 +79,8 @@ list_functions = [ 'sym_open';
                    'sym_getObjVal';
                    'sym_getIterCount';
                    'sym_getConstrActivity';
-                   'linearprog';
-                   'rmps';
-                   'solveqp';
-                   'solveminuncp';
-                   'solveminbndp';
-                   'solveminconp';
-                   'inter_fminunc';
-                   'inter_fminbnd';
-                   'inter_fmincon';
-                   'sci_intqpipopt';
-                   'sci_matrix_intlinprog';
-                   'sci_mps_intlinprog';
                    'solveecos';
+                   'fotversion';
 ];
 addinter(libFOSSEE_Optimizat_path + filesep() + 'libFOSSEE_Optimization_Toolbox' + getdynlibext(), 'libFOSSEE_Optimization_Toolbox', list_functions);
 // remove temp. variables on stack

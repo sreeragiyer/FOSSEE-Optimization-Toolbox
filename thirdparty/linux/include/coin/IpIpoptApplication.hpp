@@ -2,7 +2,7 @@
 // All Rights Reserved.
 // This code is published under the Eclipse Public License.
 //
-// $Id: IpIpoptApplication.hpp 2617 2015-11-26 16:00:20Z stefan $
+// $Id: IpIpoptApplication.hpp 2690 2017-06-12 10:28:36Z stefan $
 //
 // Authors:  Carl Laird, Andreas Waechter     IBM    2004-08-13
 
@@ -197,10 +197,14 @@ namespace Ipopt
      * caught by Ipopts initialization and optimization methods
      * and the status NonIpopt_Exception_Thrown is returned.
      * This function allows to enable rethrowing of such exceptions.
+     * 
+     * @return Returns whether non-ipopt exceptions were rethrown before.
      */
-    void RethrowNonIpoptException(bool dorethrow)
+    bool RethrowNonIpoptException(bool dorethrow)
     {
+       bool oldval = rethrow_nonipoptexception_;
        rethrow_nonipoptexception_ = dorethrow;
+       return oldval;
     }
 
     /** @name Methods for IpoptTypeInfo */
