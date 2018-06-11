@@ -1,10 +1,10 @@
 // Copyright (C) 2015 - IIT Bombay - FOSSEE
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
+// This file must be used under the terms of the BSD.
+// This source file is licensed as described in the file LICENSE, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// https://opensource.org/licenses/BSD-3-Clause
 // Author: R.Vidyadhar & Vignesh Kannan
 // Organization: FOSSEE, IIT Bombay
 // Email: toolbox@scilab.in
@@ -127,7 +127,6 @@ int sci_solveminconp(char *fname)
 	nVars = x0_cols;
 	nCons = A_rows + Aeq_rows + nonlinCon;
 
-
         
         // Starting Ipopt
 
@@ -139,7 +138,7 @@ int sci_solveminconp(char *fname)
 	app->Options()->SetNumericValue("tol", 1e-6);
 	app->Options()->SetIntegerValue("max_iter", (int)*max_iter);
 	app->Options()->SetNumericValue("max_cpu_time", *cpu_time);
-	app->Options()->SetStringValue("hessian_approximation", "limited-memory");
+//	app->Options()->SetStringValue("hessian_approximation", "limited-memory");
 
 	///////// Initialize the IpoptApplication and process the options /////////
 	ApplicationReturnStatus status;
@@ -149,7 +148,7 @@ int sci_solveminconp(char *fname)
 	  	sciprint("\n*** Error during initialization!\n");
    		return (int) status;
  	 }
-
+	 
 	 // Ask Ipopt to solve the problem
 	 status = app->OptimizeTNLP((SmartPtr<TNLP>&)Prob);
 	 //Get the solve statistics
@@ -158,7 +157,7 @@ int sci_solveminconp(char *fname)
 	 app->Statistics()->Infeasibilities(dual_inf, constr_viol, complementarity, kkt_error);
 	 rstatus = Prob->returnStatus();
 	 fobj_eval=(double)int_fobj_eval;
-
+         
 	////////// Manage the output argument //////////
 
 	fX = Prob->getX();
