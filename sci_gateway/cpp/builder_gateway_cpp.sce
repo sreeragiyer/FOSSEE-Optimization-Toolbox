@@ -341,7 +341,7 @@ Files = [
 		//ecos
  		"ecos.cpp",
 
-		"sci_fotversion.c"
+		"sci_fotversion.cpp"
 	]
 
 end
@@ -364,7 +364,7 @@ else
 	lib_base_dir = third_dir + filesep() + 'linux' + filesep() + 'lib' + filesep() + Version + filesep();
 	inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin'+ filesep();
     
-    C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
+    C_Flags=["-g -D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
     
     Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
 

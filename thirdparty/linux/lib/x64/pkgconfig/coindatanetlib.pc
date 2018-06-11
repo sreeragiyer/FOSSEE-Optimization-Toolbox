@@ -1,9 +1,0 @@
-prefix=/home/sreerag/Desktop/Clp-1.16.11
-datadir=${prefix}/share/coin/Data/Netlib
-
-Name: Netlib
-Description: Netlib models
-URL: https://projects.coin-or.org/svn/Data/Netlib
-Version: 1.2.6
-Libs:
-Cflags:

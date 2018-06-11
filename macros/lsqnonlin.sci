@@ -298,12 +298,14 @@ function [xopt,resnorm,residual,exitflag,output,lambda,gradient] = lsqnonlin (va
 		function [dy] = __fGrad(x)
 			[y_user,dy_user] = _fun(x)
 			dy = 2*y_user'*dy_user;
+			clear y_user dy_user;
 		endfunction
 	else
 		function [dy] = __fGrad(x)
 			y_user = _fun(x);
 			dy_nd = numderivative(_fun,x);
 			dy = 2*y_user'*dy_nd;
+			clear y_user dy_nd;
 		endfunction
 	end
 	
