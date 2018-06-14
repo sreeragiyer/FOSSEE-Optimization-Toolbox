@@ -30,6 +30,8 @@ TOOLBOX_TITLE = "FOSSEE Optimization Toolbox";
 
 toolbox_dir = get_absolute_file_path("builder.sce");
 
+unix_w(toolbox_dir+'getgitid');
+
 tbx_builder_macros(toolbox_dir);
 tbx_builder_gateway(toolbox_dir);
 

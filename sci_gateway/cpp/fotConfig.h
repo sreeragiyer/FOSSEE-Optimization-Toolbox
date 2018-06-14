@@ -9,4 +9,4 @@
 #define FOT_VERSION_MINOR "1"
 
 //Git id  of latest commit
- #define GIT_ID "c5545a"
+ #define GIT_ID "90e9b5f02144d1e30b86b6e691db0badf6e55ade"
