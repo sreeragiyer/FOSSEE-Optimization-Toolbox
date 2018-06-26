@@ -25,11 +25,14 @@ int sci_fotversion(char* fname,unsigned long int fname_len)
 	char fotver[]=FOT_VERSION;
 	sciprint("FOSSEE Optimization Toolbox: Version %s\n",fotver);
 
-	//Latest Git id commit		
-	char gitid[]=GIT_ID;
-    	sciprint(" Latest Git Commit ID: ");
-    	for(int i=0;i<7;i++)
-        	sciprint("%c",gitid[i]);
+	//Latest Git id commit	
+	if (GIT_CHECK)
+	{
+		char gitid[] = GIT_ID;
+		sciprint(" Latest Git Commit ID: ");
+		for (int i = 0; i < 7; i++)
+			sciprint("%c", gitid[i]);
+	}
 	
 	//Library versions
 	char cbcver[]=CBC_VERSION;
@@ -42,7 +45,7 @@ int sci_fotversion(char* fname,unsigned long int fname_len)
 	sciprint("\n\nLibraries used in toolbox:\n");	
 	sciprint(" CLP: %s\n",clpver);
 	sciprint(" Symphony: %s\n",symver);
-	sciprint(" IPOPT: %s\n",ipover);
+	sciprint(" IPOPT (with Mumps): %s\n",ipover);
 	sciprint(" OSI: %s\n",osiver);
 	sciprint(" CBC: %s\n",cbcver); 
 	sciprint(" Bonmin: %s\n",bonver);

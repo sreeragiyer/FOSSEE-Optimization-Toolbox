@@ -134,7 +134,7 @@ bool minconTMINLP::eval_f(Index n, const Number* x, bool new_x, Number& obj_valu
 	#endif	
   	char name[20]="_f";
 	Number *obj;
-	if (getFunctionFromScilab1(n,name,x, 7, 1,2,&obj))
+	if (getFunctionFromScilab1(n,name,(double*)x, 7, 1,2,&obj))		//typecast x to double*
 	{
 		return false;
 	}
@@ -150,7 +150,7 @@ bool minconTMINLP::eval_grad_f(Index n, const Number* x, bool new_x, Number* gra
 	#endif	
 	char name[20]="_gradf";
   	Number *resg;
-	if (getFunctionFromScilab1(n,name,x, 7, 1,2,&resg))
+	if (getFunctionFromScilab1(n,name,(double*)x, 7, 1,2,&resg))	//typecast x to double*
 	{
 		return false;
 	}
@@ -178,7 +178,7 @@ bool minconTMINLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number*
 	{
 	  	char name[20]="_addnlc";
 	  	Number *con;
-		if (getFunctionFromScilab1(n,name,x, 7, 1,2,&con))
+		if (getFunctionFromScilab1(n,name,(double*)x, 7, 1,2,&con))		//typecast x to double*
 		{
 			return false;
 		}
@@ -228,7 +228,7 @@ bool minconTMINLP::eval_jac_g(Index n, const Number* x, bool new_x,Index m, Inde
 		{
 			double* resj;
 			char name[20]="_gradnlc";
-			if (getFunctionFromScilab1(n,name,x, 7, 1,2,&resj))
+			if (getFunctionFromScilab1(n, name, (double*)x, 7, 1, 2, &resj))	//typecast x to double*
 			{
 				return false;
 			}
@@ -274,7 +274,7 @@ bool minconTMINLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor
 	else 
 	{	char name[20]="_gradhess";
 	  	Number *resCh;
-		if (getHessFromScilab(n,m,name,x, &obj_factor, lambda, 7, 3,2,&resCh))
+		if (getHessFromScilab(n,m,name,(double*)x, &obj_factor, (double*)lambda, 7, 3,2,&resCh))		//typecast x and lambda to double*
 		{
 			return false;
 		}

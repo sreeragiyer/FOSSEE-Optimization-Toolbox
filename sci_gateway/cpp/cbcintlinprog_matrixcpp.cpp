@@ -1,7 +1,7 @@
 // MILP with CBC library, Matrix
 // Code Authors: Akshay Miterani and Pranav Deshpande
 
-#include <sci_iofunc.hpp>
+#include "sci_iofunc.hpp"
 
 // For Branch and bound
 #include "OsiSolverInterface.hpp"
@@ -167,15 +167,15 @@ int matrix_cppintlinprog(){
     
     model.branchAndBound();
     
-    double *val = model.getColSolution();
+    const double *val = model.getColSolution();	//added const
     
     //Output the solution to Scilab
     
     //get solution for x
-    double* xValue = model.getColSolution();
+    const double* xValue = model.getColSolution();	//added const
 
     //get objective value
-    double objValue = model.getObjValue();
+    const double objValue = model.getObjValue();	//added const
 
     //Output status
     double status_=-1;

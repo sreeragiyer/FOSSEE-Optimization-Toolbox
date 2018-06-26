@@ -54,10 +54,12 @@ int cpp_intfminunc(char *fname)
 	int intconSize;
 	
 	// Output arguments
-	double *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
+	double ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;	//double *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
 	double dual_inf, constr_viol, complementarity, kkt_error;
 	int rstatus = 0;
 	int int_fobj_eval, int_constr_eval, int_fobj_grad_eval, int_constr_jac_eval, int_hess_eval;
+
+	const double *fX = NULL;	//changed fX from double* to const double*
 
 	//x0(starting point) matrix from scilab
 	if(getDoubleMatrixFromScilab(4, &x0_rows, &x0_cols, &x0ptr))
@@ -68,7 +70,7 @@ int cpp_intfminunc(char *fname)
 	nVars=x0_rows;
 		
 	// Getting intcon
-	if (getDoubleMatrixFromScilab(5,&intconSize,&temp2,&intcon))
+	if (getDoubleMatrixFromScilab(5,&intconSize,(int*)&temp2,&intcon))	//typecast temp2 from unsigned int* to int* 
 	{
 		return 1;
 	}

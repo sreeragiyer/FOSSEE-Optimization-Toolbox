@@ -50,11 +50,13 @@ int cpp_intfmincon(char *fname)
 	Number *intcon = NULL,*options=NULL, *ifval=NULL;
 	
 	// Output arguments
-	Number *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
+	Number  ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;	//Number *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
 	Number dual_inf, constr_viol, complementarity, kkt_error;
 	int rstatus = 0;
+
+	const double *fX = NULL;	//changed fX from Ipopt::Number* to const double*
 	
-	if(getDoubleMatrixFromScilab(6, &nVars, &x0_cols, &x0))
+	if(getDoubleMatrixFromScilab(6, (int*)&nVars, &x0_cols, &x0))	//typecast nVars from unsigned int* to *int
 	{
 		return 1;
 	}
@@ -69,7 +71,7 @@ int cpp_intfmincon(char *fname)
 		return 1;
 	}
 
-	if(getDoubleMatrixFromScilab(9, &nCons, &x0_cols, &conLb))
+	if(getDoubleMatrixFromScilab(9, (int*)&nCons, &x0_cols, &conLb))	//typecast nCons from unsigned int* to int* 
 	{
 		return 1;
 	}
@@ -80,12 +82,12 @@ int cpp_intfmincon(char *fname)
 	}
 
 	// Getting intcon
-	if (getDoubleMatrixFromScilab(11,&intconSize,&temp2,&intcon))
+	if (getDoubleMatrixFromScilab(11,&intconSize,(int*)&temp2,&intcon))	//typecast temp2 from unsigned int* to int* 
 	{
 		return 1;
 	}
 
-	if (getDoubleMatrixFromScilab(13,&temp1,&temp2,&LC))
+	if (getDoubleMatrixFromScilab(13,(int*)&temp1,(int*)&temp2,&LC))	//typecast temp1 and temp2 from unsigned int* to int* 
 	{
 		return 1;
 	}

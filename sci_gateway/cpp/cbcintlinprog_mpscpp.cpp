@@ -2,11 +2,11 @@
 // Finds the solution by using CBC Library
 // Code Authors: Akshay Miterani and Pranav Deshpande
 
-#include <sci_iofunc.hpp>
+#include "sci_iofunc.hpp"
 
 // For Branch and bound
 #include "OsiSolverInterface.hpp"
-#include "CbcModel.hpp"=
+#include "CbcModel.hpp"
 #include "CbcCutGenerator.hpp"
 #include "CbcHeuristicLocal.hpp"
 #include "OsiClpSolverInterface.hpp"
@@ -62,7 +62,7 @@ int mps_cppintlinprog()
     //Output the solution to Scilab
     
     //get solution for x
-    double* xValue = model.getColSolution();
+    const double* xValue = model.getColSolution();	//added const
 
     //get objective value
     double objValue = model.getObjValue();
