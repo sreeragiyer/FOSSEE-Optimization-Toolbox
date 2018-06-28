@@ -1,5 +1,13 @@
-
-
+// Copyright (C) 2016 - IIT Bombay - FOSSEE
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Author: Sreerag Iyer
+// Organization: FOSSEE, IIT Bombay
+// Email: toolbox@scilab.in
 
 #include "CbcConfig.h"
 #include "ClpConfig.h"
@@ -7,7 +15,11 @@
 #include "SymConfig.h"
 #include "IpoptConfig.h"
 #include "BonminConfig.h"
-#include "fotConfig.h"
+#include "stdio.h"
+
+#ifdef _MSC_VER
+#define popen _popen
+#endif
 
 extern "C" {
 #include "api_scilab.h"
@@ -20,20 +32,20 @@ int sci_fotversion(char* fname,unsigned long int fname_len)
 	CheckInputArgument(pvApiCtx,0,0);
 	CheckOutputArgument(pvApiCtx,1,1);
 
-	 
 	//FOT Version
-	char fotver[]=FOT_VERSION;
-	sciprint("FOSSEE Optimization Toolbox: Version %s\n",fotver);
+	char fotver[]="0.2";
+	sciprint("FOSSEE Optimization Toolbox: Version %s",fotver);
 
 	//Latest Git id commit	
-	if (GIT_CHECK)
-	{
-		char gitid[] = GIT_ID;
-		sciprint(" Latest Git Commit ID: ");
-		for (int i = 0; i < 7; i++)
-			sciprint("%c", gitid[i]);
-	}
-	
+	char gitid[128] = "sdsd2452";		//default value of Git Id
+	FILE *fp = popen("git rev-parse HEAD", "r");
+	if (fp != NULL)
+		while (fgets(gitid, 128, fp) != NULL);
+	fclose(fp);
+	sciprint("\n Latest Git Commit ID: ");
+	for (int i = 0; i < 7; i++)
+		sciprint("%c", gitid[i]);
+
 	//Library versions
 	char cbcver[]=CBC_VERSION;
 	char clpver[]=CLP_VERSION;
