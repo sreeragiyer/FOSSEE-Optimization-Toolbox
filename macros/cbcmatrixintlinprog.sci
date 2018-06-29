@@ -236,9 +236,9 @@ function [xopt,fopt,status,output] = cbcmatrixintlinprog (varargin)
     //Pusing options as required to a double array
     optval = [];
     if length(options) == 0 then
-        optval = [0 0 0 0];
+        optval = [0 0 0 0 0];
     else
-        optval = [0 0 0 0];
+        optval = [0 0 0 0 0];
         for i=1:2:length(options)
             select options(i)
                 case 'IntegerTolerance' then
@@ -249,6 +249,8 @@ function [xopt,fopt,status,output] = cbcmatrixintlinprog (varargin)
                     optval(3) = options(i+1);
                 case 'AllowableGap' then
                     optval(4) = options(i+1);
+                case 'ThreadsNumber' then
+                    optval(5) = options(i+1);
                 else
                     error(999, 'Unknown string argument passed.');
                 end
@@ -267,6 +269,7 @@ function [xopt,fopt,status,output] = cbcmatrixintlinprog (varargin)
                     "numnodes"          , [],..
                     "numfeaspoints"     , [],..
                     "numiterations"		, [],..
+                    "numberthreads"     , [],..
                     "constrviolation"   , [],..
                     "message"           , '');
                     
@@ -275,6 +278,7 @@ function [xopt,fopt,status,output] = cbcmatrixintlinprog (varargin)
     output.numiterations=[niter];
     output.relativegap=(U-L)/(abs(U)+1);
     output.absolutegap=(U-L);
+    output.numberthreads=optval(5);
     output.constrviolation = max([0;norm(Aeq*xopt-beq, 'inf');(lb'-xopt);(xopt-ub');(A*xopt-b)]);
     
     select status

@@ -51,13 +51,14 @@ int mps_cppintlinprog()
             model.setMaximumSeconds(options[2]);
     if((int)options[3]!=0)
             model.setAllowableGap(options[3]);
-    
+
     model.branchAndBound();
 
     int nVars = model.getNumCols();
     int nCons = model.getNumRows();
     
     const double *val = model.getColSolution();
+
     
     //Output the solution to Scilab
     

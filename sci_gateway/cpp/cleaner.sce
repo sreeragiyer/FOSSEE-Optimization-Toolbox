@@ -10,29 +10,12 @@ if fileinfo('loader.sce') <> [] then
   mdelete('loader.sce');
 end
 // ------------------------------------------------------
-if fileinfo('Makelib.mak') <> [] then
-  if ~ exists("dynamic_linkwindowslib") then
-    load("SCI/modules/dynamic_link/macros/windows/lib")
-  end
-  dlwConfigureEnv();
-  unix_s('nmake /Y /nologo /f Makelib.mak clean');
-  mdelete('Makelib.mak');
+if fileinfo('libFOSSEE_Optimization_Toolbox.so') <> [] then
+  mdelete('libFOSSEE_Optimization_Toolbox.so');
 end
 // ------------------------------------------------------
-if isdir('Debug') then
-  rmdir('Debug','s');
-end
-// ------------------------------------------------------
-if isdir('Release') then
-  rmdir('Release','s');
-end
-// ------------------------------------------------------
-if fileinfo('FOSSEE_Optimization_Toolbox.dll') <> [] then
-  mdelete('FOSSEE_Optimization_Toolbox.dll');
-end
-// ------------------------------------------------------
-if fileinfo('FOSSEE_Optimization_Toolbox.c') <> [] then
-  mdelete('FOSSEE_Optimization_Toolbox.c');
+if fileinfo('libFOSSEE_Optimization_Toolbox.c') <> [] then
+  mdelete('libFOSSEE_Optimization_Toolbox.c');
 end
 // ------------------------------------------------------
 chdir(curdir);

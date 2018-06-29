@@ -16,7 +16,7 @@ Aeq = [5,3,4,6,1,1,1,1;
 5*0.03,3*0.03,4*0.04,6*0.04,0.06,0.07,0.08,0.09;]
 beq = [ 25, 1.25, 1.25]
 intcon = [1 2 3 4];
-// Calling Symphony
+// Calling cbc
 [x,f,status,output] = cbcintlinprog(c,intcon,[],[],Aeq,beq,lb,ub)
 // Press ENTER to continue
 halt()   // Press return to continue
@@ -91,7 +91,7 @@ intcon = [];
 for i = 1:nbVar
 intcon = [intcon i];
 end
-options = list('MaxTime', 25);
+options = list('MaxTime', 25,'ThreadsNumber',3);
 // The expected solution :
 // Output variables
 xopt = [0 1 1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 1 1 0 1 ..

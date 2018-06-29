@@ -9,9 +9,12 @@
 #include "CbcCutGenerator.hpp"
 #include "CbcHeuristicLocal.hpp"
 #include "OsiClpSolverInterface.hpp"
+
+
 extern "C"{
 #include <api_scilab.h>
 #include "sciprint.h"
+
 
 int matrix_cppintlinprog(){
 
@@ -122,7 +125,7 @@ int matrix_cppintlinprog(){
     }
 
     //get options from scilab
-    if(getFixedSizeDoubleMatrixFromScilab(11 , 1 , 4 , &options))
+    if(getFixedSizeDoubleMatrixFromScilab(11 , 1 , 5 , &options))
     {
         return 1;      
     }
@@ -164,6 +167,10 @@ int matrix_cppintlinprog(){
             model.setMaximumSeconds(options[2]);
     if((int)options[3]!=0)
             model.setAllowableGap(options[3]);
+    if((int)options[4]!=0)
+	    model.setNumberThreads(options[4]);
+
+    
     
     model.branchAndBound();
     
