@@ -91,7 +91,7 @@ intcon = [];
 for i = 1:nbVar
 intcon = [intcon i];
 end
-options = list('MaxTime', 25,'ThreadsNumber',0);
+options = list('MaxTime', 25,'ThreadsNumber',3);
 // The expected solution :
 // Output variables
 xopt = [0 1 1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 1 1 0 1 ..

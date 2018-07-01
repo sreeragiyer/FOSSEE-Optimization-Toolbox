@@ -14,6 +14,4 @@
 #define CBC_VERSION_RELEASE 9
 
 
-#ifdef _MSC_VER
 #define CBC_THREAD 1
-#endif
